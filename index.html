@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Line of Business</title>
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<link rel="stylesheet" href="styles/page.css"/>
+		<link rel="stylesheet" href="styles/map.css"/>
+	</head>
+
+	<body ng-app="app">
+		<div class="container" ng-controller="MainCtrl">
+			<div class="header">
+				<h2 class="text-muted">
+					Visualize LOB
+				</h2>
+			</div>
+			<div style="background-color:lightgrey; padding:10px;">
+				<span> Country
+				<select name="country" ng-model="selectedCountry" ng-change="updateGraph()" style="padding-right:3px">
+				 <option value="" selected>Select</option>
+				  <option value="uk">UK</option>
+				  <option value="us">US</option>
+				</select>
+				</span>
+			<!--	<span> Line Of Bussiness
+				<select name="Line of bussiness" style="padding-right:5px">
+				 
+				  <option value="assest servicing">Assest Servicing</option>
+				  <option value="lob">Lob</option>
+				  </select>
+				  </span>
+				  <span>Product
+				<select name="Product" style="padding-right:3px">
+				  <option value="global custody">Global custody</option>
+				</select>
+				</span> -->
+				
+				<button class="apply" style="float:right; margin-right:50px;" ng-click="applyGraph()">Apply</button>
+			</div>
+		<!--	<div ng-init="accordion=1">
+				<h3 class="accordion" ng-class="{active:accordion==1}">
+					<a href ng-click="accordion = 1">Section 1</a>
+				</h3>
+				<p class="accordion-content" ng-show="accordion==1">Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using</p>
+			</div> -->
+			<div  style="margin:5px">
+				<circle-paking cid ="{{jsonFilePath}}" ng-if="isCountrySelected" ></circle-paking>
+			</div>
+			
+		</div>
+
+		<script src="bower_components/d3/d3.js"></script>
+		<script src="bower_components/d3-scale/dist/d3-scale.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-accordion/angular-accordion.js"></script>
+		<script src="scripts/d3.v4.min.js"></script>
+		<script src="scripts/d3.v4.js"></script>
+		<script src="scripts/app.js"></script>
+		<script src="scripts/directive1.js"></script>
+	</body>
+</html>
