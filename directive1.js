@@ -6,8 +6,17 @@ angular.module('app').directive('circlePaking', function () {
 		scope: {
             cid: '@'
         },
-		template : "<svg width='800' height='800'></svg> <div id='description' style='position: fixed; top: 40%; right: 0%; width:300px;'></div>",
-		link: function (scope, element, attr) {
+		template : "<svg width='800' height='800' style='float:left'></svg> <div style='float:left'><div id='description' style='position: relative; top: 40%; right: 0%; width:300px;'></div><div id='accordion'><div class='panel'><div class='header' ng-click='toggleContent()'>Header</div><div class='body' id='toggleSection'>body of panel 2</div></div><div></div>",
+		link: function (scope, element, attr,accordion) {
+			document.getElementById('toggleSection').style.display = 'none';
+			scope.toggleContent = function(){
+				if(document.getElementById('toggleSection').style.display == 'none'){
+					document.getElementById('toggleSection').style.display = 'block';
+				}else{
+					document.getElementById('toggleSection').style.display = 'none';
+				}
+			}
+			
 			document.getElementById('description').innerHTML = '<h3>Summary</h3>BNYM does not currently have any local depositaries established in Denmark.  If you wish to explore the possibility of a BNYM Entity providing these types of depositary services in Denmark, please contact the BNYM legal team for further information and advice on a case-by-case basis.'
 			var svg = d3.select("svg"),
 				margin = 20,
@@ -35,9 +44,6 @@ angular.module('app').directive('circlePaking', function () {
 					var focus = root,
 					nodes = pack(root).descendants(),
 					view;
-					
-					
-
 			var circle = g.selectAll("circle")
 				.data(nodes)
 				.enter().append("circle")
